@@ -57,6 +57,9 @@ var deepSeekConfig []byte
 //go:embed configs/huggingface.json
 var huggingFaceConfig []byte
 
+//go:embed configs/meituan.json
+var meituanConfig []byte
+
 // ProviderFunc is a function that returns a Provider.
 type ProviderFunc func() catwalk.Provider
 
@@ -77,6 +80,7 @@ var providerRegistry = []ProviderFunc{
 	chutesProvider,
 	deepSeekProvider,
 	huggingFaceProvider,
+	meituanProvider,
 }
 
 // GetAll returns all registered providers.
@@ -159,4 +163,8 @@ func deepSeekProvider() catwalk.Provider {
 
 func huggingFaceProvider() catwalk.Provider {
 	return loadProviderFromConfig(huggingFaceConfig)
+}
+
+func meituanProvider() catwalk.Provider {
+	return loadProviderFromConfig(meituanConfig)
 }
